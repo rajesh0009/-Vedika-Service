@@ -37,14 +37,13 @@ import com.vedika.functionhall.model.BankDetails;
 import com.vedika.functionhall.model.Details;
 import com.vedika.functionhall.model.FunctionHall;
 import com.vedika.functionhall.model.FunctionHallUIResponse;
+import com.vedika.functionhall.model.GenericResponse;
 import com.vedika.functionhall.model.Owner;
-import com.vedika.functionhall.model.PublishListing;
-import com.vedika.functionhall.model.Response;
+import com.vedika.functionhall.model.PublishDetails;
 import com.vedika.functionhall.model.ResponseBankdetails;
 import com.vedika.functionhall.model.ResponseBanksUI;
 import com.vedika.functionhall.model.ResponseObject;
 import com.vedika.functionhall.model.Responsebank;
-import com.vedika.functionhall.model.StateResponse;
 import com.vedika.functionhall.service.AmazonClient;
 import com.vedika.functionhall.service.BankService;
 import com.vedika.functionhall.service.OwnerService;
@@ -55,20 +54,11 @@ import com.vedika.functionhall.service.OwnerService;
 
 public class OwnerController {
 
-	private AmazonClient amazonClient;
-
-	@Autowired
-	OwnerController(AmazonClient amazonClient) {
-		this.amazonClient = amazonClient;
-	}
-
 	@Autowired
 	private OwnerService ownerService;
-	@Autowired
-	private BankService bankservice;
 
 	@RequestMapping(value = "/functionhalls/", method = RequestMethod.GET)
-	public Response getAllFunctionHalls() {
+	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> getAllFunctionHalls() {
 
 		List<Owner> functionhallOwners = ownerService.findAll();
 
@@ -110,14 +100,14 @@ public class OwnerController {
 
 		}
 
-		Response response = new Response();
-		response.setFunctionHalls(functionhallsUI);
-		return response;
+		GenericResponse<List<FunctionHallUIResponse>> response = new GenericResponse<List<FunctionHallUIResponse>>();
+		response.setData(functionhallsUI);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/functionhallsBy/", method = RequestMethod.GET)
 
-	public Response findFunctionhallByNameAndCity(@RequestParam(value = "city", required = false) String city,
+	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> findFunctionhallByNameAndCity(@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "name", required = false) String name) {
 
 		List<Owner> functionhallOwners = ownerService.findFunctionHallByNameAndCity(city, name);
@@ -154,146 +144,25 @@ public class OwnerController {
 
 		}
 
-		Response response = new Response();
-		response.setFunctionHalls(functionhallsUI);
-		return response;
+		GenericResponse<List<FunctionHallUIResponse>> response = new GenericResponse<List<FunctionHallUIResponse>>();
+		response.setData(functionhallsUI);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/verification", method = RequestMethod.POST)
-	public ResponseEntity<ResponseObject> sendOTP(@RequestParam String mobileNumber, @RequestBody ResponseObject response1) {
-		ResponseObject res = new ResponseObject();
-		res.setRequestId(res.getRequestId());
-		res.setMobileNumber(res.getMobileNumber());
-		res.setMessage(res.getMessage());
-		String twoFaCode = String.valueOf(new Random().nextInt(9999) + 1000);
-		ownerService.send2FaCode(mobileNumber, twoFaCode);
-		return new ResponseEntity<>(response1,HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "user/verification", method = RequestMethod.PUT)
-	public ResponseEntity<Object> verify(@RequestParam String mobileNumber) {
-
-		boolean isValid = true;
-
-		if (isValid)
-			return new ResponseEntity<>(HttpStatus.OK);
-
-		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-	}
 
 	@PostMapping(value = "/functionhalls")
-	public ResponseEntity<?> saveOrUpdatePublishListing(@RequestBody PublishListing publishListing) {
-		ownerService.saveOrUpdatePublishListing(publishListing);
+	public ResponseEntity<?> saveOrUpdateOwner(@RequestBody Owner owner) {
+		ownerService.saveOrUpdateOwner(owner);
 		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/image/", method = RequestMethod.POST)
-
-	public Amazonresponse image(@RequestParam(value = "file") MultipartFile file, String corelationid)
-			throws IOException {
-		
-		 HttpClient httpclient = new DefaultHttpClient();
-         HttpPost httppost = new HttpPost("https://api.constantcontact.com/v2/library/files");
-         httppost.addHeader("Content-type", "multipart/form-data");
-
-
-		Amazonresponse response = new Amazonresponse();
-		response.setMsg(" uploading request submitted successfully.");
-
-		String imageUrl = amazonClient.uploadFile(file, corelationid);
-
-		ownerService.update(corelationid, imageUrl);
-
-		return response;
+	@PostMapping(value = "/functionhalls1")
+	public ResponseEntity<?> saveOrUpdatePublishDetails(@RequestBody PublishDetails publishDetails) {
+		ownerService.saveOrUpdatepublishListing(publishDetails);
+		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
 	}
 
-	
 
-	@GetMapping("/bankdetails/")
-	public ResponseBankdetails getBank(@RequestParam(value = "bankname") String bank,
-			@RequestParam(value = "branch") String branch) {
-		List<Bank> response = bankservice.findbyBranchAndBank(bank, branch);
-		List<Responsebank> functionhallsUI = new ArrayList<Responsebank>();
-		if (null != response && !response.isEmpty()) {
-			for (Bank owner : response) {
-				List<BankDetails> funtionhalls = owner.getData();
-				if (null != funtionhalls && !funtionhalls.isEmpty()) {
-					for (BankDetails bankdetails : funtionhalls) {
-						Responsebank response1 = new Responsebank();
-						response1.setId(owner.get_id());
-						response1.setAddress(bankdetails.getAddress());
-						response1.setBankname(bankdetails.getBank());
-						response1.setBranch(bankdetails.getBranch());
-						response1.setCity(bankdetails.getCity());
-						response1.setIfsc(bankdetails.getIfsc());
-						response1.setContact(bankdetails.getContact());
-						response1.setState(bankdetails.getState());
-						response1.setDistrict(bankdetails.getDistrict());
-						functionhallsUI.add(response1);
-					}
-				}
-			}
-		}
-		ResponseBankdetails bankdata = new ResponseBankdetails();
-		bankdata.setBankdetails(functionhallsUI);
-		return bankdata;
-
-	}
-	@GetMapping("/branches")
-	public BankData getBank(@RequestParam(value = "bank") String bank) {
-		Optional<Set<String>> branchNameList = Optional.of(new TreeSet<>());
-		List<Bank> response = bankservice.findbybank(bank);
-		if (null != response && !response.isEmpty()) {
-			for (Bank bankdata : response) {
-
-				List<BankDetails> banklist = bankdata.getData();
-				if (null != banklist && !banklist.isEmpty()) {
-
-					for (BankDetails branch : banklist) {
-						if (branch.getBranch() != null && !branch.getBranch().isEmpty()
-								&& !branchNameList.get().contains(branch.getBranch())) {
-							branchNameList.get().add(branch.getBranch());
-						}
-
-					}
-				}
-			}
-		}
-		ResponseBanksUI branchList = new ResponseBanksUI();
-		branchList.setBankDetails(branchNameList.get());
-		BankData data = new BankData();
-		data.setData(branchList);
-		return data;
-
-	}
-
-	@GetMapping("/banks")
-	public BankData getBank() {
-
-		Optional<Set<String>> bankNameList = Optional.of(new TreeSet<>());
-		List<Bank> banks = bankservice.findAll();
-		if (null != banks && !banks.isEmpty()) {
-			for (Bank bank : banks) {
-				List<BankDetails> details = bank.getData();
-
-				if (null != details && !details.isEmpty()) {
-
-					for (BankDetails bankdata : details) {
-						if (bankdata.getBank() != null && !bankdata.getBank().isEmpty()
-								&& !bankNameList.get().contains(bankdata.getBank())) {
-							bankNameList.get().add(bankdata.getBank());
-						}
-					}
-				}
-			}
-		}
-
-		ResponseBanksUI banksList = new ResponseBanksUI();
-		banksList.setBankDetails(bankNameList.get());
-		BankData data = new BankData();
-		data.setData(banksList);
-		return data;
-	}
 }
 
 

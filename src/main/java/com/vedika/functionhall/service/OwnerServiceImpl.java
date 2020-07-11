@@ -19,8 +19,9 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.vedika.functionhall.config.TwilioConfiguration;
 import com.vedika.functionhall.model.Owner;
-import com.vedika.functionhall.model.PublishListing;
+import com.vedika.functionhall.model.PublishDetails;
 import com.vedika.functionhall.repository.OwnerRepository;
+import com.vedika.functionhall.repository.PublishRepo;
 import com.vedika.functionhall.service.OwnerService;
 
 @Service("twilio")
@@ -28,6 +29,8 @@ public class OwnerServiceImpl implements OwnerService {
 
 	@Autowired
 	private OwnerRepository ownerRepository;
+	@Autowired
+	private PublishRepo publishRepo;
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
@@ -65,10 +68,10 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	
-	
-	public Owner saveOrUpdatePublishListing(PublishListing publishListing) {
-		return ownerRepository.save(publishListing);
+
+
+	public Owner saveOrUpdateOwner(Owner owner) {
+		return ownerRepository.save(owner);
 	}
 
 	@Override
@@ -81,11 +84,11 @@ public class OwnerServiceImpl implements OwnerService {
 	public void update(String corelationid, String imageUrl) throws FileNotFoundException, RuntimeException {
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("functionhall.corelationId").is(corelationid));
-			Owner ownerref = mongoTemplate.findOne(query, Owner.class);
+			query.addCriteria(Criteria.where("corelationId").is(corelationid));
+			PublishDetails ownerref = mongoTemplate.findOne(query, PublishDetails.class);
 			System.out.println(ownerref);
 			UpdateResult update = mongoTemplate.updateMulti(query,
-					new Update().addToSet("functionhall.$.imageUrl", imageUrl), Owner.class);
+					new Update().addToSet("details.$.imageUrl", imageUrl), PublishDetails.class);
 			System.out.println(update);
 		} catch (MongoException e) {
 			System.out.println("nessary file not present" + e);
@@ -93,5 +96,11 @@ public class OwnerServiceImpl implements OwnerService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public PublishDetails saveOrUpdatepublishListing(PublishDetails publishDetails) {
+		return publishRepo.save(publishDetails);
+	}
+
 
 }

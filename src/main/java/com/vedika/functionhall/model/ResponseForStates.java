@@ -1,12 +1,11 @@
 package com.vedika.functionhall.model;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
-@Document(collection = "AllStates")
-public class Details {
+public class ResponseForStates {
 	private String id;
 	private CountryDetails countryDetails;
+	private List<States> states;
 	public String getId() {
 		return id;
 	}
@@ -19,9 +18,13 @@ public class Details {
 	public void setCountryDetails(CountryDetails countryDetails) {
 		this.countryDetails = countryDetails;
 	}
-	@Override
-	public String toString() {
-		return "Details [id=" + id + ", countryDetails=" + countryDetails + "]";
+	public List<States> getStates() {
+		return states;
 	}
+	public void setStates(List<States> states) {
+		this.states = states;
+	}
+
+
 
 }

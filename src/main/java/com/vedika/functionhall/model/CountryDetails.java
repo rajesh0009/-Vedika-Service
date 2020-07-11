@@ -2,31 +2,27 @@ package com.vedika.functionhall.model;
 
 import java.util.List;
 
-public class Data {
+public class CountryDetails {
 
-	private String country;
+	private String name;
 	private List<States> states;
 
-	public String getCountry() {
-		return country;
-
+	public String getName() {
+		return name;
 	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 	public List<States> getStates() {
 		return states;
 	}
-
 	public void setStates(List<States> states) {
 		this.states = states;
 	}
-
 	@Override
 	public String toString() {
-		return "Data [country=" + country + ", states=" + states + "]";
+		return "Data [name=" + name + ", states=" + states + "]";
 	}
+
 
 }

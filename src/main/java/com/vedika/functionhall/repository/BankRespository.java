@@ -11,10 +11,10 @@ import com.vedika.functionhall.model.Bank;
 @Repository
 public interface BankRespository extends MongoRepository<Bank, String> {
 
-	@Query(value = " {'data.bank': ?0}")
+	@Query(value = " {'banks.bank': ?0}")
 	List<Bank> findbybank(String bank);
 
-	@Query(value = "{'data.bank' : ?0,'data.branch':?1}", fields = "{'data.$':1}")
+	@Query(value = "{'banks.bank' : ?0,'banks.branch':?1}", fields = "{'banks.$':1}")
 
 	List<Bank> findbyBranchAndBank(String bank, String branch);
 

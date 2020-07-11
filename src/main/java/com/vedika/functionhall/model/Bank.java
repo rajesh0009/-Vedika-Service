@@ -11,7 +11,7 @@ public class Bank {
 	@Id
 	private String _id;
 
-	List<BankDetails> data;
+	public List<BankDetails> banks;
 
 	public String get_id() {
 		return _id;
@@ -21,17 +21,13 @@ public class Bank {
 		this._id = _id;
 	}
 
-	public List<BankDetails> getData() {
-		return data;
+	public List<BankDetails> getBanks() {
+		return banks;
 	}
 
-	public void setData(List<BankDetails> data) {
-		this.data = data;
+	public void setBanks(List<BankDetails> banks) {
+		this.banks = banks;
 	}
 
-	@Override
-	public String toString() {
-		return "Bank [_id=" + _id + ", data=" + data + "]";
-	}
 
 }

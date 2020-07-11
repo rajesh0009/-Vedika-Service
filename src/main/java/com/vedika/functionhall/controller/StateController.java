@@ -1,6 +1,7 @@
 package com.vedika.functionhall.controller;
-
+import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.vedika.functionhall.model.CountryDetails;
 import com.vedika.functionhall.model.Details;
-import com.vedika.functionhall.model.StateResponse;
+import com.vedika.functionhall.model.FunctionHallUIResponse;
+import com.vedika.functionhall.model.GenericResponse;
+import com.vedika.functionhall.model.ResponseForStates;
+import com.vedika.functionhall.model.States;
 import com.vedika.functionhall.service.StateService;
 
 @Controller
 @RestController
-@RequestMapping(value = "/states")
+@RequestMapping(value = "/api")
 public class StateController {
 
 	Logger logger = LoggerFactory.getLogger(StateController.class);
@@ -33,28 +39,24 @@ public class StateController {
 		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
 	}
 
-	@GetMapping(value = "")
-	public List<Details> getBystate() {
-		return stateService.findAll();
+	@GetMapping(value = "state/details")
+
+	public ResponseEntity<GenericResponse<List<Details>>> response(@RequestParam(value = "country", required = false) String name) {
+		List<Details> details = stateService.findByName(name);
+		GenericResponse<List<Details>> response= new  GenericResponse<List<Details>>();
+		response.setData(details);
+
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-	@GetMapping(value = "state")
 
-	public StateResponse getstate(@RequestParam(value = "state", required = false) String state, StateResponse state1) {
-		List<Details> details = stateService.findByState(state);
 
-		if (null != details && !details.isEmpty()) {
-			for (Details request : details) {
-				StateResponse response = new StateResponse();
-				response.setId(request.getId());
-				response.setData(request.getData());
-				return response;
+	@GetMapping(value = "city/details")
 
-			}
-		}
-
-		return null;
-
+	public ResponseEntity<GenericResponse<List<Details>>> getstate(@RequestParam(value = "state", required = false) String name) {
+		List<Details> details = stateService.findByStateName(name);
+		GenericResponse<List<Details>> response= new  GenericResponse<List<Details>>();
+		response.setData(details);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-
 }
