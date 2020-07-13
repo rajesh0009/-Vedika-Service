@@ -4,15 +4,7 @@ public class ResponseObject {
 	private String requestId;
 	private String mobileNumber;
 	private String message;
-	private String verificationCode;
 
-	public String getVerificationCode() {
-		return verificationCode;
-	}
-
-	public void setVerificationCode(String verificationCode) {
-		this.verificationCode = verificationCode;
-	}
 
 	public String getRequestId() {
 		return requestId;
@@ -41,7 +33,7 @@ public class ResponseObject {
 	@Override
 	public String toString() {
 		return "ResponseObject [requestId=" + requestId + ", mobileNumber=" + mobileNumber + ", message=" + message
-				+ ", verificationCode=" + verificationCode + "]";
+				+  "]";
 	}
 
 	

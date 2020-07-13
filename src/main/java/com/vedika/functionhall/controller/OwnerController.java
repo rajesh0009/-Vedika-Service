@@ -150,14 +150,8 @@ public class OwnerController {
 	}
 
 
-	@PostMapping(value = "/functionhalls")
-	public ResponseEntity<?> saveOrUpdateOwner(@RequestBody Owner owner) {
-		ownerService.saveOrUpdateOwner(owner);
-		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
-	}
-
-	@PostMapping(value = "/functionhalls1")
-	public ResponseEntity<?> saveOrUpdatePublishDetails(@RequestBody PublishDetails publishDetails) {
+	@PostMapping(value = "/publishListing")
+	public ResponseEntity<GenericResponse<PublishDetails>> saveOrUpdatePublishDetails(@RequestBody PublishDetails publishDetails) {
 		ownerService.saveOrUpdatepublishListing(publishDetails);
 		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
 	}

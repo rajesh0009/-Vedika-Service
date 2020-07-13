@@ -10,7 +10,7 @@ public class PublishDetails {
 	private Location location;
 	private FunctionHall details;
 	private BankDetails paymentDetails;
-	private ResponseObject security;
+	private Security security;
 	
 	
 	public Location getLocation() {
@@ -25,13 +25,13 @@ public class PublishDetails {
 	public void setPaymentDetails(BankDetails paymentDetails) {
 		this.paymentDetails = paymentDetails;
 	}
-	public ResponseObject getSecurity() {
+
+	public Security getSecurity() {
 		return security;
 	}
-	public void setSecurity(ResponseObject security) {
+	public void setSecurity(Security security) {
 		this.security = security;
 	}
-
 	public int getOwnerId() {
 		return ownerId;
 	}
@@ -57,6 +57,4 @@ public class PublishDetails {
 				+ ", details=" + details + ", paymentDetails=" + paymentDetails + ", security=" + security + "]";
 	}
 	
-
-
 }

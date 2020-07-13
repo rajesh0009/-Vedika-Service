@@ -1,8 +1,10 @@
 package com.vedika.functionhall.model;
 
+import java.util.UUID;
+
 public class GenericResponse<T> {
 
-	private String userId;
+	private String userId=UUID.randomUUID().toString();
 	private T data;
 	private String message;
 
