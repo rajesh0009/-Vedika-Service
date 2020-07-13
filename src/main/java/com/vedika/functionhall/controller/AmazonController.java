@@ -32,19 +32,19 @@ public class AmazonController
 	}
 	@RequestMapping(value = "/image/", method = RequestMethod.POST)
 
-	public ResponseEntity<GenericResponse<Amazonresponse>> image(@RequestParam(value = "file") MultipartFile file,
-			String corelationid) throws IOException {
+	public ResponseEntity<Amazonresponse> image(@RequestParam(value = "file") MultipartFile file,
+			String correlationid) throws IOException {
 
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost("https://api.constantcontact.com/v2/library/files");
 		httppost.addHeader("Content-type", "multipart/form-data");
 
-		GenericResponse<Amazonresponse> response = new GenericResponse<Amazonresponse>();
-		response.setMessage(" uploading request submitted successfully.");
+		Amazonresponse response = new Amazonresponse();
+		response.setMsg(" uploading request submitted successfully.");
 
-		String imageUrl = amazonClient.uploadFile(file, corelationid);
+		String imageUrl = amazonClient.uploadFile(file, correlationid);
 
-		ownerService.update(corelationid, imageUrl);
+		ownerService.update(correlationid, imageUrl);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

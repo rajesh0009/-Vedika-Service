@@ -17,7 +17,7 @@ public class FunctionHallUIResponse {
 	private String[] ImageUrl;
 	private String street;
 	private String state;
-	private String corelationid;
+	private String correlationid;
 
 	public String getFunctionhalldescription() {
 		return functionhalldescription;
@@ -59,12 +59,12 @@ public class FunctionHallUIResponse {
 		this.roomtype = roomtype;
 	}
 
-	public String getCorelationid() {
-		return corelationid;
+	public String getCorrelationid() {
+		return correlationid;
 	}
 
-	public void setCorelationid(String corelationid) {
-		this.corelationid = corelationid;
+	public void setCorrelationid(String correlationid) {
+		this.correlationid = correlationid;
 	}
 
 	private String city;
@@ -165,8 +165,8 @@ public class FunctionHallUIResponse {
 				+ ownerLastName + ", ownerId=" + ownerId + ", functionhalldescription=" + functionhalldescription
 				+ ", functionhalltype=" + functionhalltype + ", foodtype=" + foodtype + ", maximumguest=" + maximumguest
 				+ ", roomtype=" + roomtype + ", ownerContactNumber=" + ownerContactNumber + ", ImageUrl="
-				+ Arrays.toString(ImageUrl) + ", street=" + street + ", state=" + state + ", corelationid="
-				+ corelationid + ", city=" + city + ", zipcode=" + zipcode + ", functionhallContactNumber="
+				+ Arrays.toString(ImageUrl) + ", street=" + street + ", state=" + state + ", correlationid="
+				+ correlationid + ", city=" + city + ", zipcode=" + zipcode + ", functionhallContactNumber="
 				+ functionhallContactNumber + "]";
 	}
 

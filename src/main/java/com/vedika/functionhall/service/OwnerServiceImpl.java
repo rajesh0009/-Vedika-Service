@@ -81,10 +81,10 @@ public class OwnerServiceImpl implements OwnerService {
 
 	@Override
 
-	public void update(String corelationid, String imageUrl) throws FileNotFoundException, RuntimeException {
+	public void update(String correlationid, String imageUrl) throws FileNotFoundException, RuntimeException {
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("corelationId").is(corelationid));
+			query.addCriteria(Criteria.where("correlationId").is(correlationid));
 			PublishDetails ownerref = mongoTemplate.findOne(query, PublishDetails.class);
 			System.out.println(ownerref);
 			UpdateResult update = mongoTemplate.updateMulti(query,

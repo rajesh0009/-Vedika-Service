@@ -17,7 +17,7 @@ public interface OwnerService {
 
 	List<Owner> findFunctionHallByNameAndCity(String city, String name);
 
-	void update(String corelationid, String imageUrl) throws FileNotFoundException, RuntimeException;
+	void update(String correlationid, String imageUrl) throws FileNotFoundException, RuntimeException;
 
 	List<Owner> sendOTP(String mobileNumber);
 

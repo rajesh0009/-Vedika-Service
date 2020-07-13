@@ -88,8 +88,8 @@ public class OwnerController {
 						response.setRoomtype(functionHall.getRoomtype());
 						response.setState(functionHall.getState());
 						response.setZipcode(functionHall.getZipcode());
+						response.setCorrelationid(functionHall.getCorrelationId());
 						response.setImageUrl(functionHall.getImageUrl());
-						response.setCorelationid(functionHall.getCorelationId());
 						response.setFunctionhallContactNumber(functionHall.getFunctionhallContactNumber());
 						response.setOwnerContactNumber(owner.getOwnerContactNumber());
 
@@ -130,10 +130,15 @@ public class OwnerController {
 						response.setOwnerId(owner.getId());
 						response.setCity(functionHall.getCity());
 						response.setStreet(functionHall.getStreet());
+						response.setFunctionhalldescription(functionHall.getFunctionhalldescription());
+						response.setFunctionhalltype(functionHall.getFunctionhalltype());
+						response.setMaximumguest(functionHall.getMaximumguest());
+						response.setFoodtype(functionHall.getFoodtype());
+						response.setRoomtype(functionHall.getRoomtype());
 						response.setState(functionHall.getState());
 						response.setZipcode(functionHall.getZipcode());
 						response.setImageUrl(functionHall.getImageUrl());
-						response.setCorelationid(functionHall.getCorelationId());
+						response.setCorrelationid(functionHall.getCorrelationId());
 						response.setFunctionhallContactNumber(functionHall.getFunctionhallContactNumber());
 						response.setOwnerContactNumber(owner.getOwnerContactNumber());
 

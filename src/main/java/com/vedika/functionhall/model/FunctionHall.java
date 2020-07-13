@@ -43,7 +43,7 @@ public class FunctionHall {
 
 	private String bucketName;
 	private String imageDirectoryPath;
-	private String corelationId;
+	private String correlationId;
 
 	public FunctionHall() {
 	}
@@ -58,7 +58,7 @@ public class FunctionHall {
 
 	public FunctionHall(String id, String name, String ownerId, String ownerFirstName, String ownerLastName,
 			String functionhallContactNumber, String street, String state, String city, int zipcode, String email,
-			String bucketName, String imageDirectoryPath, String imageUrl, String corelationid) {
+			String bucketName, String imageDirectoryPath, String imageUrl, String correlationid) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -74,7 +74,7 @@ public class FunctionHall {
 		this.bucketName = bucketName;
 		this.imageDirectoryPath = imageDirectoryPath;
 
-		this.corelationId = corelationid;
+		this.correlationId = correlationid;
 	}
 
 	public String getOwnerId() {
@@ -205,12 +205,12 @@ public class FunctionHall {
 		this.email = email;
 	}
 
-	public String getCorelationId() {
-		return corelationId;
+	public String getCorrelationId() {
+		return correlationId;
 	}
 
-	public void setCorelationId(String corelationId) {
-		this.corelationId = corelationId;
+	public void setCorrelationId(String correlationId) {
+		this.correlationId = correlationId;
 	}
 
 	@Override
@@ -221,7 +221,7 @@ public class FunctionHall {
 				+ ", roomtype=" + roomtype + ", functionhallContactNumber=" + functionhallContactNumber + ", street="
 				+ street + ", state=" + state + ", city=" + city + ", zipcode=" + zipcode + ", email=" + email
 				+ ", imageUrl=" + Arrays.toString(imageUrl) + ", bucketName=" + bucketName + ", imageDirectoryPath="
-				+ imageDirectoryPath + ", corelationId=" + corelationId + "]";
+				+ imageDirectoryPath + ", correlationId=" + correlationId + "]";
 	}
 
 }
