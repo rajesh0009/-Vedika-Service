@@ -29,5 +29,4 @@ public class Bank {
 		this.banks = banks;
 	}
 
-
 }

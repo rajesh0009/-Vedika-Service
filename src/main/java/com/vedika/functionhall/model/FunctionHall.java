@@ -43,7 +43,7 @@ public class FunctionHall {
 
 	private String bucketName;
 	private String imageDirectoryPath;
-	private String correlationId;
+	private String correlationid;
 
 	public FunctionHall() {
 	}
@@ -74,7 +74,7 @@ public class FunctionHall {
 		this.bucketName = bucketName;
 		this.imageDirectoryPath = imageDirectoryPath;
 
-		this.correlationId = correlationid;
+		this.correlationid = correlationid;
 	}
 
 	public String getOwnerId() {
@@ -205,12 +205,12 @@ public class FunctionHall {
 		this.email = email;
 	}
 
-	public String getCorrelationId() {
-		return correlationId;
+	public String getCorrelationid() {
+		return correlationid;
 	}
 
-	public void setCorrelationId(String correlationId) {
-		this.correlationId = correlationId;
+	public void setCorrelationid(String correlationid) {
+		this.correlationid = correlationid;
 	}
 
 	@Override
@@ -221,7 +221,8 @@ public class FunctionHall {
 				+ ", roomtype=" + roomtype + ", functionhallContactNumber=" + functionhallContactNumber + ", street="
 				+ street + ", state=" + state + ", city=" + city + ", zipcode=" + zipcode + ", email=" + email
 				+ ", imageUrl=" + Arrays.toString(imageUrl) + ", bucketName=" + bucketName + ", imageDirectoryPath="
-				+ imageDirectoryPath + ", correlationId=" + correlationId + "]";
+				+ imageDirectoryPath + ", correlationId=" + correlationid + "]";
 	}
+
 
 }

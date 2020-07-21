@@ -1,58 +1,35 @@
 package com.vedika.functionhall.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.vedika.functionhall.model.Amazonresponse;
-import com.vedika.functionhall.model.Bank;
-import com.vedika.functionhall.model.BankData;
-import com.vedika.functionhall.model.BankDetails;
-import com.vedika.functionhall.model.Details;
 import com.vedika.functionhall.model.FunctionHall;
 import com.vedika.functionhall.model.FunctionHallUIResponse;
 import com.vedika.functionhall.model.GenericResponse;
 import com.vedika.functionhall.model.Owner;
 import com.vedika.functionhall.model.PublishDetails;
-import com.vedika.functionhall.model.ResponseBankdetails;
-import com.vedika.functionhall.model.ResponseBanksUI;
-import com.vedika.functionhall.model.ResponseObject;
-import com.vedika.functionhall.model.Responsebank;
-import com.vedika.functionhall.service.AmazonClient;
-import com.vedika.functionhall.service.BankService;
 import com.vedika.functionhall.service.OwnerService;
+import com.vedika.functionhall.service.PublishService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 
 public class OwnerController {
+	Logger logger=LoggerFactory.getLogger(OwnerController.class);
 
 	@Autowired
 	private OwnerService ownerService;
@@ -61,7 +38,7 @@ public class OwnerController {
 	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> getAllFunctionHalls() {
 
 		List<Owner> functionhallOwners = ownerService.findAll();
-
+		logger.info("findAll functionhalls");
 		List<FunctionHallUIResponse> functionhallsUI = new ArrayList<FunctionHallUIResponse>();
 
 		if (null != functionhallOwners && !functionhallOwners.isEmpty()) {
@@ -88,7 +65,7 @@ public class OwnerController {
 						response.setRoomtype(functionHall.getRoomtype());
 						response.setState(functionHall.getState());
 						response.setZipcode(functionHall.getZipcode());
-						response.setCorrelationid(functionHall.getCorrelationId());
+						response.setCorrelationid(functionHall.getCorrelationid());
 						response.setImageUrl(functionHall.getImageUrl());
 						response.setFunctionhallContactNumber(functionHall.getFunctionhallContactNumber());
 						response.setOwnerContactNumber(owner.getOwnerContactNumber());
@@ -97,7 +74,6 @@ public class OwnerController {
 					}
 				}
 			}
-
 		}
 
 		GenericResponse<List<FunctionHallUIResponse>> response = new GenericResponse<List<FunctionHallUIResponse>>();
@@ -111,7 +87,7 @@ public class OwnerController {
 			@RequestParam(value = "name", required = false) String name) {
 
 		List<Owner> functionhallOwners = ownerService.findFunctionHallByNameAndCity(city, name);
-
+		logger.info("find by name:"+name);
 		List<FunctionHallUIResponse> functionhallsUI = new ArrayList<FunctionHallUIResponse>();
 
 		if (null != functionhallOwners && !functionhallOwners.isEmpty()) {
@@ -138,7 +114,7 @@ public class OwnerController {
 						response.setState(functionHall.getState());
 						response.setZipcode(functionHall.getZipcode());
 						response.setImageUrl(functionHall.getImageUrl());
-						response.setCorrelationid(functionHall.getCorrelationId());
+						response.setCorrelationid(functionHall.getCorrelationid());
 						response.setFunctionhallContactNumber(functionHall.getFunctionhallContactNumber());
 						response.setOwnerContactNumber(owner.getOwnerContactNumber());
 
@@ -154,12 +130,6 @@ public class OwnerController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-
-	@PostMapping(value = "/publishListing")
-	public ResponseEntity<GenericResponse<PublishDetails>> saveOrUpdatePublishDetails(@RequestBody PublishDetails publishDetails) {
-		ownerService.saveOrUpdatepublishListing(publishDetails);
-		return new ResponseEntity("functionhall details added successfully", HttpStatus.OK);
-	}
 
 
 }

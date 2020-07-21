@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.vedika.functionhall.model.Owner;
 import com.vedika.functionhall.model.PublishDetails;
+import com.vedika.functionhall.model.Security;
 
 @Service
 public interface OwnerService {
@@ -23,6 +24,8 @@ public interface OwnerService {
 
 	boolean send2FaCode(String mobileNumber, String twoFaCode);
 
-	PublishDetails saveOrUpdatepublishListing(PublishDetails publishDetails);
+	
+
+	
 
 }

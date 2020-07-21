@@ -49,8 +49,6 @@ public class StateController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-
-
 	@GetMapping(value = "city/details")
 
 	public ResponseEntity<GenericResponse<List<Details>>> getstate(@RequestParam(value = "state", required = false) String name) {

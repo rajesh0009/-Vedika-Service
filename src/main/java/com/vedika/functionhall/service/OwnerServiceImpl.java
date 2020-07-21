@@ -20,6 +20,7 @@ import com.twilio.type.PhoneNumber;
 import com.vedika.functionhall.config.TwilioConfiguration;
 import com.vedika.functionhall.model.Owner;
 import com.vedika.functionhall.model.PublishDetails;
+import com.vedika.functionhall.model.Security;
 import com.vedika.functionhall.repository.OwnerRepository;
 import com.vedika.functionhall.repository.PublishRepo;
 import com.vedika.functionhall.service.OwnerService;
@@ -53,10 +54,6 @@ public class OwnerServiceImpl implements OwnerService {
 
 	}
 
-	private boolean isPhoneNumberValid(String phoneNumber) {
-		return true;
-	}
-
 	@Override
 	public List<Owner> sendOTP(String mobileNumber) {
 		return ownerRepository.sendOTP(mobileNumber);
@@ -84,11 +81,11 @@ public class OwnerServiceImpl implements OwnerService {
 	public void update(String correlationid, String imageUrl) throws FileNotFoundException, RuntimeException {
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("correlationId").is(correlationid));
-			PublishDetails ownerref = mongoTemplate.findOne(query, PublishDetails.class);
+			query.addCriteria(Criteria.where("functionhall.correlationid").is(correlationid));
+			Owner ownerref = mongoTemplate.findOne(query, Owner.class);
 			System.out.println(ownerref);
 			UpdateResult update = mongoTemplate.updateMulti(query,
-					new Update().addToSet("details.$.imageUrl", imageUrl), PublishDetails.class);
+					new Update().addToSet("functionhall.$.imageUrl", imageUrl), Owner.class);
 			System.out.println(update);
 		} catch (MongoException e) {
 			System.out.println("nessary file not present" + e);
@@ -97,10 +94,7 @@ public class OwnerServiceImpl implements OwnerService {
 		}
 	}
 
-	@Override
-	public PublishDetails saveOrUpdatepublishListing(PublishDetails publishDetails) {
-		return publishRepo.save(publishDetails);
-	}
+	
 
 
 }

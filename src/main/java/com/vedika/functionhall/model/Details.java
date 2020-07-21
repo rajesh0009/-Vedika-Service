@@ -1,6 +1,5 @@
 package com.vedika.functionhall.model;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "AllStates")

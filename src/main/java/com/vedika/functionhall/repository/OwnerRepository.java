@@ -19,6 +19,6 @@ public interface OwnerRepository extends MongoRepository<Owner, String> {
 	@Query(value = "{'functionhall.mobileNumber' : ?0")
 	List<Owner> sendOTP(String mobileNumber);
 
-	Owner save(Owner owner);
+	Owner save(String mobileNumber);
 
 }

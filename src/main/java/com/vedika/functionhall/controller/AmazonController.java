@@ -26,6 +26,7 @@ public class AmazonController
 	private AmazonClient amazonClient;
 	@Autowired
 	private OwnerService ownerService;
+	
 	@Autowired
 	AmazonController(AmazonClient amazonClient) {
 		this.amazonClient = amazonClient;

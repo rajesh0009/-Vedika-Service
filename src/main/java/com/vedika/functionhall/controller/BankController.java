@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vedika.functionhall.model.Bank;
-import com.vedika.functionhall.model.BankData;
 import com.vedika.functionhall.model.BankDetails;
 import com.vedika.functionhall.model.GenericResponse;
-import com.vedika.functionhall.model.ResponseBankdetails;
-import com.vedika.functionhall.model.ResponseBanksUI;
 import com.vedika.functionhall.model.Responsebank;
 import com.vedika.functionhall.service.BankService;
 @RestController

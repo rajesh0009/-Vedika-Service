@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.vedika.functionhall.model.Bank;
-import com.vedika.functionhall.model.BankData;
 import com.vedika.functionhall.repository.BankRespository;
 
 @Service

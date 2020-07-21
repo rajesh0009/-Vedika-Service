@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class PublishDetails {
 	private int ownerId;
-	private String corelationId;
+	private String correlationid;
 	private Location location;
 	private FunctionHall details;
-	private BankDetails paymentDetails;
+	private AccountDetails paymentDetails;
 	private Security security;
 	
 	
@@ -19,13 +19,13 @@ public class PublishDetails {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	public BankDetails getPaymentDetails() {
+
+	public AccountDetails getPaymentDetails() {
 		return paymentDetails;
 	}
-	public void setPaymentDetails(BankDetails paymentDetails) {
+	public void setPaymentDetails(AccountDetails paymentDetails) {
 		this.paymentDetails = paymentDetails;
 	}
-
 	public Security getSecurity() {
 		return security;
 	}
@@ -38,11 +38,11 @@ public class PublishDetails {
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
-	public String getCorelationId() {
-		return corelationId;
+	public String getCorrelationid() {
+		return correlationid;
 	}
-	public void setCorelationId(String corelationId) {
-		this.corelationId = corelationId;
+	public void setCorrelationid(String correlationid) {
+		this.correlationid = correlationid;
 	}
 
 	public FunctionHall getDetails() {
@@ -53,7 +53,7 @@ public class PublishDetails {
 	}
 	@Override
 	public String toString() {
-		return "PublishDetails [ownerId=" + ownerId + ", corelationId=" + corelationId + ", location=" + location
+		return "PublishDetails [ownerId=" + ownerId + ", correlationid=" + correlationid + ", location=" + location
 				+ ", details=" + details + ", paymentDetails=" + paymentDetails + ", security=" + security + "]";
 	}
 	

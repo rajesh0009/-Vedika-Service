@@ -1,6 +1,5 @@
 package com.vedika.functionhall.controller;
 
-
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +32,13 @@ public class SecurityController {
 	}
 
 	@RequestMapping(value = "user/verification", method = RequestMethod.PUT)
-	public ResponseEntity<?> verify(@RequestParam String mobileNumber) {
+	public ResponseEntity<Object> verify(@RequestParam String mobileNumber) {
 
 		boolean isValid = true;
 
 		if (isValid)
 			return new ResponseEntity<>("otp verified successfully", HttpStatus.OK);
 
-		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		return new ResponseEntity<>("otp is not verified",HttpStatus.FORBIDDEN);
 	}
 }

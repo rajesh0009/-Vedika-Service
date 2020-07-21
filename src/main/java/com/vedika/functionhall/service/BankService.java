@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.vedika.functionhall.model.Bank;
-import com.vedika.functionhall.model.BankData;
 
 @Service
 public interface BankService {
