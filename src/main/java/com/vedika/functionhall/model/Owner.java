@@ -9,17 +9,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "functionhall_reference_data")
 public class Owner {
 	@Id
-	private String id;
+	private String ownerId;
+	private String corelationId;
 	private String name;
-
 	private String firstName;
-
 	private String lastName;
 	private String functionhallname;
 	private String city;
-
 	private String state;
-
 	private String zipcode;
 	private String ownerContactNumber;
 
@@ -27,19 +24,30 @@ public class Owner {
 
 	private List<FunctionHall> functionhall;
 
-	@Override
-	public String toString() {
-		return "Owner [id=" + id + ", name=" + name + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", functionhallname=" + functionhallname + ", city=" + city + ", state=" + state + ", zipcode="
-				+ zipcode + ", ownerContactNumber=" + ownerContactNumber + ", functionhall=" + functionhall + "]";
+	private List<AccountDetails> accountdetails;
+
+	public List<AccountDetails> getAccountdetails() {
+		return accountdetails;
 	}
 
-	public String getId() {
-		return id;
+	public void setAccountdetails(List<AccountDetails> accountdetails) {
+		this.accountdetails = accountdetails;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getCorelationId() {
+		return corelationId;
+	}
+
+	public void setCorelationId(String corelationId) {
+		this.corelationId = corelationId;
+	}
+
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public String getName() {
@@ -112,6 +120,14 @@ public class Owner {
 
 	public void setFunctionhall(List<FunctionHall> functionhall) {
 		this.functionhall = functionhall;
+	}
+
+	@Override
+	public String toString() {
+		return "Owner [ownerId=" + ownerId + ", corelationId=" + corelationId + ", name=" + name + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", functionhallname=" + functionhallname + ", city=" + city
+				+ ", state=" + state + ", zipcode=" + zipcode + ", ownerContactNumber=" + ownerContactNumber
+				+ ", functionhall=" + functionhall + ", accountdetails=" + accountdetails + "]";
 	}
 
 }

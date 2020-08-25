@@ -33,11 +33,11 @@ public class MDCFilter implements Filter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
 		try {
-			MDC.put("userId", getCorrelationId());
+			MDC.put("requestId", getCorrelationId());
 			logger.info("user enters in");
 			filterChain.doFilter(servletRequest, servletResponse);
 		} finally {
-			MDC.remove("userId");
+			MDC.remove("requestId");
 		}
 	}
 

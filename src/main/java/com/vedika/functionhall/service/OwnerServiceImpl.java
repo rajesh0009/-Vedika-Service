@@ -1,6 +1,7 @@
 package com.vedika.functionhall.service;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,70 +15,36 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.result.UpdateResult;
-import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.vedika.functionhall.config.TwilioConfiguration;
 import com.vedika.functionhall.model.Owner;
-import com.vedika.functionhall.model.PublishDetails;
-import com.vedika.functionhall.model.Security;
 import com.vedika.functionhall.repository.OwnerRepository;
-import com.vedika.functionhall.repository.PublishRepo;
 import com.vedika.functionhall.service.OwnerService;
 
-@Service("twilio")
+@Service
 public class OwnerServiceImpl implements OwnerService {
 
 	@Autowired
 	private OwnerRepository ownerRepository;
-	@Autowired
-	private PublishRepo publishRepo;
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(OwnerServiceImpl.class);
 
-	private final TwilioConfiguration twilioConfiguration;
-
-	@Autowired
-	public OwnerServiceImpl(TwilioConfiguration twilioConfiguration) {
-		this.twilioConfiguration = twilioConfiguration;
-	}
-
-	public boolean send2FaCode(String mobileNumber, String twoFaCode) {
-
-		Message.creator(new PhoneNumber(mobileNumber), new PhoneNumber(twilioConfiguration.getTrialNumber()),
-				"Your Two Factor Authentication code is: " + twoFaCode).create();
-
-		return true;
-
-	}
-
 	@Override
-	public List<Owner> sendOTP(String mobileNumber) {
-		return ownerRepository.sendOTP(mobileNumber);
-	}
-
-	@Override
-	public List<Owner> findAll() {
-		return ownerRepository.findAll();
-	}
-
-	@Override
-
 
 	public Owner saveOrUpdateOwner(Owner owner) {
 		return ownerRepository.save(owner);
 	}
 
 	@Override
-	public List<Owner> findFunctionHallByNameAndCity(String city, String name) {
-		return ownerRepository.findFunctionHallByNameAndCity(city, name);
+	public List<Owner> findFunctionHallByNameAndCity(String city, String name, int maximumguest) {
+		return ownerRepository.findFunctionHallByNameAndCity(city, name, maximumguest);
 	}
 
 	@Override
-
 	public void update(String correlationid, String imageUrl) throws FileNotFoundException, RuntimeException {
 		try {
 			Query query = new Query();
@@ -94,7 +61,10 @@ public class OwnerServiceImpl implements OwnerService {
 		}
 	}
 
-	
-
+	@Override
+	public List<Owner> findByownerID(String _id) {
+		// TODO Auto-generated method stub
+		return ownerRepository.findByownerID(_id) ;
+	}
 
 }

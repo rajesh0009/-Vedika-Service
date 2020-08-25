@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vedika.functionhall.model.ResponseObject;
 import com.vedika.functionhall.service.OwnerService;
+import com.vedika.functionhall.service.SecurityServcie;
+
 @RestController
 @RequestMapping("/api")
 public class SecurityController {
 	@Autowired
-	private OwnerService ownerService;
+	private SecurityServcie securityservice;
 
 	@RequestMapping(value = "/user/verification", method = RequestMethod.POST)
 	public ResponseEntity<ResponseObject> sendOTP(@RequestParam String mobileNumber,
@@ -27,7 +29,7 @@ public class SecurityController {
 		res.setMobileNumber(res.getMobileNumber());
 		res.setMessage(res.getMessage());
 		String twoFaCode = String.valueOf(new Random().nextInt(9999) + 1000);
-		ownerService.send2FaCode(mobileNumber, twoFaCode);
+		securityservice.send2FaCode(mobileNumber, twoFaCode);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
@@ -39,6 +41,6 @@ public class SecurityController {
 		if (isValid)
 			return new ResponseEntity<>("otp verified successfully", HttpStatus.OK);
 
-		return new ResponseEntity<>("otp is not verified",HttpStatus.FORBIDDEN);
+		return new ResponseEntity<>("otp is not verified", HttpStatus.FORBIDDEN);
 	}
 }

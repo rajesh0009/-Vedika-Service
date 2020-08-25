@@ -1,6 +1,6 @@
 package com.vedika.functionhall.model;
 
-public class Amazonresponse {
+public class Response {
 	private String msg;
 
 	public String getMsg() {

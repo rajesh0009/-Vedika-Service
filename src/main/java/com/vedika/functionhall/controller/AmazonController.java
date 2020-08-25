@@ -14,40 +14,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vedika.functionhall.model.Amazonresponse;
 import com.vedika.functionhall.model.GenericResponse;
+import com.vedika.functionhall.model.Response;
 import com.vedika.functionhall.service.AmazonClient;
 import com.vedika.functionhall.service.OwnerService;
+
 @RestController
 @RequestMapping("/api")
-public class AmazonController 
-{
+public class AmazonController {
 
 	private AmazonClient amazonClient;
 	@Autowired
 	private OwnerService ownerService;
-	
+
 	@Autowired
 	AmazonController(AmazonClient amazonClient) {
 		this.amazonClient = amazonClient;
 	}
+
 	@RequestMapping(value = "/image/", method = RequestMethod.POST)
 
-	public ResponseEntity<Amazonresponse> image(@RequestParam(value = "file") MultipartFile file,
+	public ResponseEntity<GenericResponse<Response>> image(@RequestParam(value = "file") MultipartFile file,
 			String correlationid) throws IOException {
 
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost httppost = new HttpPost("https://api.constantcontact.com/v2/library/files");
 		httppost.addHeader("Content-type", "multipart/form-data");
 
-		Amazonresponse response = new Amazonresponse();
+		Response response = new Response();
 		response.setMsg(" uploading request submitted successfully.");
 
 		String imageUrl = amazonClient.uploadFile(file, correlationid);
 
 		ownerService.update(correlationid, imageUrl);
+		GenericResponse<Response> responsedata = new GenericResponse<Response>();
+		responsedata.setData(response);
 
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return new ResponseEntity<GenericResponse<Response>>(responsedata, HttpStatus.OK);
 	}
 }
-

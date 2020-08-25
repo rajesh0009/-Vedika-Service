@@ -19,6 +19,7 @@ import com.vedika.functionhall.model.BankDetails;
 import com.vedika.functionhall.model.GenericResponse;
 import com.vedika.functionhall.model.Responsebank;
 import com.vedika.functionhall.service.BankService;
+
 @RestController
 @RequestMapping("/api")
 
@@ -56,7 +57,7 @@ public class BankController {
 		}
 		GenericResponse<List<Responsebank>> bankdata = new GenericResponse<List<Responsebank>>();
 		bankdata.setData(functionhallsUI);
-		return new ResponseEntity<>(bankdata,HttpStatus.OK);
+		return new ResponseEntity<>(bankdata, HttpStatus.OK);
 
 	}
 
@@ -82,17 +83,11 @@ public class BankController {
 					response.setData(branchNameList.get());
 				}
 
-
-
 			}
-
-
 
 		}
 
-
-		return new ResponseEntity<>(response,HttpStatus.OK);
-
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/banks")

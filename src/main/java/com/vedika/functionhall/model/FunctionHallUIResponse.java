@@ -1,6 +1,7 @@
 package com.vedika.functionhall.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class FunctionHallUIResponse {
 
@@ -17,10 +18,29 @@ public class FunctionHallUIResponse {
 	private String[] ImageUrl;
 	private String street;
 	private String state;
+	private List<String> amenities;
+	private List<String> eventType;
+
 	private String correlationid;
 
 	public String getFunctionhalldescription() {
 		return functionhalldescription;
+	}
+
+	public List<String> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(List<String> amenities) {
+		this.amenities = amenities;
+	}
+
+	public List<String> getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(List<String> eventType) {
+		this.eventType = eventType;
 	}
 
 	public void setFunctionhalldescription(String functionhalldescription) {

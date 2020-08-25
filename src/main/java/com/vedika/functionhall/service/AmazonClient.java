@@ -60,7 +60,6 @@ public class AmazonClient {
 			throw new FileNotFoundException(" Exception: necessary file was not present");
 		}
 		return imageUrl;
-
 	}
 
 	private File convertMultiPartToFile(MultipartFile file, String corelationid) throws IOException {

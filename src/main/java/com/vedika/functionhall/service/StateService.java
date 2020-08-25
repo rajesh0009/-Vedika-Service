@@ -8,12 +8,11 @@ import com.vedika.functionhall.model.Details;
 import com.vedika.functionhall.model.States;
 
 public interface StateService {
-	Details saveOrUpdateOwner(Details details);
 
 	List<Details> findByName(String name);
+
 	List<Details> findByStateName(String name);
 
 	List<Details> findAll();
-
 
 }

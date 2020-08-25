@@ -5,8 +5,8 @@ twilio:
   trial_number: +12059973730
 amazonProperties:
   endpointUrl: https://s3.ap-south-1.amazonaws.com
-  accessKey: AKIAT2UPXHNUCSEARCFJ
-  secretKey: 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
-  bucketName: suntechnoservices-javadevolpers
+  accessKey: AKIAIJOFWP66LVSY5MXQ
+  secretKey: 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
+  bucketName: vedikaas
   
  

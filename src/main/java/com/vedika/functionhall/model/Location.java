@@ -5,7 +5,13 @@ public class Location {
 	private String state;
 	private String streetAddress;
 	private String city;
-	private String postalCode;
+	private String zipCode;
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 	public String getCountry() {
 		return country;
 	}
@@ -24,22 +30,17 @@ public class Location {
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
 	}
+
 	public String getCity() {
 		return city;
 	}
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getPostalCode() {
-		return postalCode;
-	}
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
 	@Override
 	public String toString() {
 		return "Location [country=" + country + ", state=" + state + ", streetAddress=" + streetAddress + ", city="
-				+ city + ", postalCode=" + postalCode + "]";
+				+ city + ", zipCode=" + zipCode + "]";
 	}
 
 

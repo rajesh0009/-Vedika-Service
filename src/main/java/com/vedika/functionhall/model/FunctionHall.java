@@ -1,5 +1,7 @@
 package com.vedika.functionhall.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,12 +20,86 @@ public class FunctionHall {
 	private int maximumguest;
 	private String roomtype;
 	private String functionhallContactNumber;
-	private String street;
+	private String streetAddress;
 	private String state;
+	private String country;
 	private String city;
-	private int zipcode;
+	private String zipCode;
+	private List<String> amenities;
+	private List<String> eventType;
+	
+	public List<String> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(List<String> amenities) {
+		this.amenities = amenities;
+	}
+
+	public List<String> getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(List<String> eventType) {
+		this.eventType = eventType;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
 	private String email;
 	private String[] imageUrl;
+	private LocalDate date;
+	private LocalTime timeSlot;
+	private String Bookedby;
+	private String bucketName;
+	private String imageDirectoryPath;
+	private String correlationid;
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(LocalTime timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+
+	public String getBookedby() {
+		return Bookedby;
+	}
+
+	public void setBookedby(String bookedby) {
+		Bookedby = bookedby;
+	}
 
 	public String getFoodtype() {
 		return foodtype;
@@ -41,10 +117,6 @@ public class FunctionHall {
 		this.imageUrl = imageUrl;
 	}
 
-	private String bucketName;
-	private String imageDirectoryPath;
-	private String correlationid;
-
 	public FunctionHall() {
 	}
 
@@ -57,8 +129,8 @@ public class FunctionHall {
 	}
 
 	public FunctionHall(String id, String name, String ownerId, String ownerFirstName, String ownerLastName,
-			String functionhallContactNumber, String street, String state, String city, int zipcode, String email,
-			String bucketName, String imageDirectoryPath, String imageUrl, String correlationid) {
+			String functionhallContactNumber, String street, String state, String city, String email, String bucketName,
+			String imageDirectoryPath, String imageUrl, String correlationid) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,10 +138,7 @@ public class FunctionHall {
 		this.ownerFirstName = ownerFirstName;
 		this.ownerLastName = ownerLastName;
 		this.functionhallContactNumber = functionhallContactNumber;
-		this.street = street;
 		this.state = state;
-		this.city = city;
-		this.zipcode = zipcode;
 		this.email = email;
 		this.bucketName = bucketName;
 		this.imageDirectoryPath = imageDirectoryPath;
@@ -165,14 +234,6 @@ public class FunctionHall {
 		this.name = name;
 	}
 
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
 	public String getState() {
 		return state;
 	}
@@ -187,14 +248,6 @@ public class FunctionHall {
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public int getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(int zipcode) {
-		this.zipcode = zipcode;
 	}
 
 	public String getEmail() {
@@ -217,12 +270,13 @@ public class FunctionHall {
 	public String toString() {
 		return "FunctionHall [id=" + id + ", name=" + name + ", ownerId=" + ownerId + ", ownerFirstName="
 				+ ownerFirstName + ", ownerLastName=" + ownerLastName + ", functionhalldescription="
-				+ functionhalldescription + ", functionhalltype=" + functionhalltype + ", maximumguest=" + maximumguest
-				+ ", roomtype=" + roomtype + ", functionhallContactNumber=" + functionhallContactNumber + ", street="
-				+ street + ", state=" + state + ", city=" + city + ", zipcode=" + zipcode + ", email=" + email
-				+ ", imageUrl=" + Arrays.toString(imageUrl) + ", bucketName=" + bucketName + ", imageDirectoryPath="
-				+ imageDirectoryPath + ", correlationId=" + correlationid + "]";
+				+ functionhalldescription + ", functionhalltype=" + functionhalltype + ", foodtype=" + foodtype
+				+ ", maximumguest=" + maximumguest + ", roomtype=" + roomtype + ", functionhallContactNumber="
+				+ functionhallContactNumber + ", streetAddress=" + streetAddress + ", state=" + state + ", country="
+				+ country + ", city=" + city + ", zipCode=" + zipCode + ", amenities=" + amenities + ", eventType="
+				+ eventType + ", email=" + email + ", imageUrl=" + Arrays.toString(imageUrl) + ", date=" + date
+				+ ", timeSlot=" + timeSlot + ", Bookedby=" + Bookedby + ", bucketName=" + bucketName
+				+ ", imageDirectoryPath=" + imageDirectoryPath + ", correlationid=" + correlationid + "]";
 	}
-
 
 }
