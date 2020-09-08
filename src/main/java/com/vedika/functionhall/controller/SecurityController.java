@@ -1,6 +1,9 @@
 package com.vedika.functionhall.controller;
 
+import java.util.Date;
 import java.util.Random;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,15 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vedika.functionhall.model.ResponseObject;
 import com.vedika.functionhall.service.OwnerService;
 import com.vedika.functionhall.service.SecurityServcie;
+import com.vedika.functionhall.tokenservice.JwtTokenUtil;
 
 @RestController
 @RequestMapping("/api")
+
 public class SecurityController {
 	@Autowired
 	private SecurityServcie securityservice;
 
 	@RequestMapping(value = "/user/verification", method = RequestMethod.POST)
-	public ResponseEntity<ResponseObject> sendOTP(@RequestParam String mobileNumber,
+	public ResponseEntity<ResponseObject> sendOTP(@Valid @RequestParam String mobileNumber,
 			@RequestBody ResponseObject response) {
 		ResponseObject res = new ResponseObject();
 		res.setRequestId(res.getRequestId());
@@ -34,13 +39,15 @@ public class SecurityController {
 	}
 
 	@RequestMapping(value = "user/verification", method = RequestMethod.PUT)
-	public ResponseEntity<Object> verify(@RequestParam String mobileNumber) {
+	public ResponseEntity<Object> verify(@Valid @RequestParam String mobileNumber) {
 
 		boolean isValid = true;
 
 		if (isValid)
 			return new ResponseEntity<>("otp verified successfully", HttpStatus.OK);
 
-		return new ResponseEntity<>("otp is not verified", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("otp is not verified", HttpStatus.FORBIDDEN);
+
+	
 	}
 }

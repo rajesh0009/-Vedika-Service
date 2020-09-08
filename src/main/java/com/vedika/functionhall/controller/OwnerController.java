@@ -3,6 +3,8 @@ package com.vedika.functionhall.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class OwnerController {
 	private OwnerService ownerService;
 
 	@RequestMapping(value = "/functionhalls", method = RequestMethod.GET)
-	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> findFunctionhallByNameAndCity(
+	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> findFunctionhallByNameAndCity(@Valid
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "timeslot", required = false) String timeslot,
@@ -88,7 +90,7 @@ public class OwnerController {
 	// @RequestMapping(value="/updatefunctionhall" ,method=RequesMethod.PUT)
 	
 	@RequestMapping(value = "/owner", method = RequestMethod.GET)
-	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> findFunctionhallByNameAndCity(
+	public ResponseEntity<GenericResponse<List<FunctionHallUIResponse>>> findFunctionhallByNameAndCity(@Valid
 			@RequestParam(value = "ownerId", required = false) String _id){
 		
 		List<Owner> functionhallOwners = ownerService.findByownerID(_id);
@@ -103,7 +105,7 @@ public class OwnerController {
 				if (null != funtionhalls && !funtionhalls.isEmpty()) {
 
 					for (FunctionHall functionHall : funtionhalls) {
-
+           
 						FunctionHallUIResponse response = new FunctionHallUIResponse();
 						response.setName(functionHall.getName());
 						response.setOwnerFirstName(owner.getFirstName());
@@ -121,7 +123,6 @@ public class OwnerController {
 						response.setCorrelationid(functionHall.getCorrelationid());
 						response.setFunctionhallContactNumber(functionHall.getFunctionhallContactNumber());
 						response.setOwnerContactNumber(owner.getOwnerContactNumber());
-
 						functionhallsUI.add(response);
 					}
 				}

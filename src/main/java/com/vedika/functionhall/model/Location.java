@@ -1,10 +1,16 @@
 package com.vedika.functionhall.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Location {
 	private String country;
+	@NotNull(message="Enter the state")
 	private String state;
+	@NotNull(message="Enter the Address")
 	private String streetAddress;
+	@NotNull(message="Enter the city")
 	private String city;
+	@NotNull(message="Enter the zipcode")
 	private String zipCode;
 	public String getZipCode() {
 		return zipCode;

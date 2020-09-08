@@ -3,24 +3,48 @@ package com.vedika.functionhall.model;
 import java.util.Arrays;
 import java.util.List;
 
-public class FunctionHallUIResponse {
+import javax.validation.constraints.NotBlank;
 
+public class FunctionHallUIResponse {
+  
+	private List<FunctionHall> functionhalls;
+	public List<FunctionHall> getFunctionhalls() {
+		return functionhalls;
+	}
+
+	public void setFunctionhalls(List<FunctionHall> functionhalls) {
+		this.functionhalls = functionhalls;
+	}
+	@NotBlank(message="Enter Name")
 	private String name;
+	@NotBlank(message="Enter ownerFirstName")
 	private String ownerFirstName;
+	@NotBlank(message="Enter ownerLastName")
 	private String ownerLastName;
+	@NotBlank(message="Enter ownerId")
 	private String ownerId;
+	@NotBlank(message="Enter functionhalldescription")
 	private String functionhalldescription;
+	@NotBlank(message="Enter functionhallType")
 	private String functionhalltype;
+	@NotBlank(message="Enter FoodType")
 	private String foodtype;
+	@NotBlank(message="Enter Number of guests")
 	private int maximumguest;
+	@NotBlank(message="Enter Roomtype")
 	private String roomtype;
+	@NotBlank(message="Enter  ownerContactNumber ")
 	private String ownerContactNumber;
 	private String[] ImageUrl;
+	@NotBlank(message="Enter Street ")
 	private String street;
+	@NotBlank(message="Enter State")
 	private String state;
+	@NotBlank(message="Enter  amenities ")
 	private List<String> amenities;
+	@NotBlank(message="Enter  eventType ")
 	private List<String> eventType;
-
+	@NotBlank(message="Enter correlationId  ")
 	private String correlationid;
 
 	public String getFunctionhalldescription() {

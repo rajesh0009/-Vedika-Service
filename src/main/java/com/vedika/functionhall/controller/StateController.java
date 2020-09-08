@@ -2,6 +2,8 @@ package com.vedika.functionhall.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class StateController {
 
 	@GetMapping(value = "state/details")
 
-	public ResponseEntity<GenericResponse<List<Details>>> response(
+	public ResponseEntity<GenericResponse<List<Details>>> response(@Valid
 			@RequestParam(value = "country", required = false) String name) {
 		List<Details> details = stateService.findByName(name);
 		GenericResponse<List<Details>> response = new GenericResponse<List<Details>>();
@@ -42,7 +44,7 @@ public class StateController {
 	@GetMapping(value = "city/details")
 
 	public ResponseEntity<GenericResponse<List<Details>>> getstate(
-			@RequestParam(value = "state", required = false) String name) {
+			@Valid @RequestParam(value = "state", required = false) String name) {
 		List<Details> details = stateService.findByStateName(name);
 		GenericResponse<List<Details>> response = new GenericResponse<List<Details>>();
 		response.setData(details);

@@ -1,10 +1,15 @@
 package com.vedika.functionhall.model;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "AllStates")
 public class Details {
-	private String id;
+	
+	 @NotBlank(message="Enter Id")
+	private String id; 
+	 @NotBlank(message="Enter countryDetails")
 	private CountryDetails countryDetails;
 	public String getId() {
 		return id;

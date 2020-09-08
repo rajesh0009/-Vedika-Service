@@ -3,6 +3,8 @@ package com.vedika.functionhall.model;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,20 +12,29 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Owner {
 	@Id
 	private String ownerId;
+	@NotNull(message="Enter the correlationid")
 	private String corelationId;
+	@NotNull(message="Enter the name")
 	private String name;
+	@NotNull(message="Enter the firstName")
 	private String firstName;
+	@NotNull(message="Enter the lastName")
 	private String lastName;
+	@NotNull(message="Enter the functionhallname")
 	private String functionhallname;
+	@NotNull(message="Enter the city")
 	private String city;
+	@NotNull(message="Enter the state")
 	private String state;
+	@NotNull(message="Enter the zipcode")
 	private String zipcode;
+	@NotNull(message="Enter the  ownerContactNumber")
 	private String ownerContactNumber;
 
 	/* db ref */
 
 	private List<FunctionHall> functionhall;
-
+    
 	private List<AccountDetails> accountdetails;
 
 	public List<AccountDetails> getAccountdetails() {

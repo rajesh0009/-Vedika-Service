@@ -2,8 +2,11 @@ package com.vedika.functionhall.model;
 
 import java.util.List;
 
-public class CountryDetails {
+import javax.validation.constraints.NotBlank;
 
+public class CountryDetails {
+	
+	@NotBlank(message="Enter Name")
 	private String name;
 	private List<States> states;
 

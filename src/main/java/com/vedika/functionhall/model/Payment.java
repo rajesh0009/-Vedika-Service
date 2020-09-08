@@ -2,32 +2,38 @@ package com.vedika.functionhall.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "payment")
 
 public class Payment {
-
+	
+	@NotNull(message="Enter the  functionhallId")
     private String functionhallId;
-
+	
+	@NotNull(message="Enter Id")
 	private String id;
+	@NotNull(message="Enter Email")
     private String email;
-    
+	@NotNull(message="Enter name")
     private String name;
-    
+	@NotNull(message="Enter Phone")
     private String phone;
-    
+	@NotNull(message="Enter productInfo")
     private String productInfo;
-    
+	@NotNull(message="Enter Amount")
     private Double amount;
-  
+	
+	@NotNull(message="Enter paymentStatus")
     private PaymentStatus paymentStatus;
-   
+	@NotNull(message="Enter paymentDate")
     private Date paymentDate;
-    
+	@NotNull(message="Enter txnId")
     private String txnId;
-    
+	@NotNull(message="Enter  mihpayId")
     private String mihpayId;
-   
+	@NotNull(message="Enter  mode")
     private PaymentMode mode;
 
 

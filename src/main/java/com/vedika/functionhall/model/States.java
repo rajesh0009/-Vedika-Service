@@ -2,8 +2,12 @@ package com.vedika.functionhall.model;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class States {
+	@NotNull(message="Enter Name")
 	private String name;
+	@NotNull(message="Enter Code")
 	private String code;
 	private List<String> cities;
 	public String getName() {

@@ -34,7 +34,10 @@ public class PublishServiceImpl implements PublishService {
 		if (null != functionhalldata && null != accountdetails && null != location) {
 			FunctionHall functionhall = new FunctionHall();
 			AccountDetails accountdata = new AccountDetails();
+			
 			functionhall.setCity(location.getCity());
+			
+			
 			functionhall.setState(location.getState());
 			functionhall.setStreetAddress(location.getStreetAddress());
 			functionhall.setZipCode(location.getZipCode());

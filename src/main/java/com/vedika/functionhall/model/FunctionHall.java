@@ -5,27 +5,46 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.annotation.Id;
 
 public class FunctionHall {
 	@Id
 	private String id;
+	@NotBlank(message="Enter Name")
 	private String name;
+	@NotBlank(message="Enter OwnerId")
 	private String ownerId;
+	@NotBlank(message="Enter ownerFirstName")
 	private String ownerFirstName;
+	@NotBlank(message="Enter owner LastName")
 	private String ownerLastName;
+	@NotBlank(message="Enter functionhalldescription")
 	private String functionhalldescription;
+	@NotBlank(message="Enter functionhalltype")
 	private String functionhalltype;
+	@NotBlank(message="Enter FoodType")
 	private String foodtype;
+	@NotBlank(message="Enter Number of guests")
 	private int maximumguest;
+	@NotBlank(message="Enter RoomType")
 	private String roomtype;
+	
 	private String functionhallContactNumber;
+	@NotBlank(message="Enter Address")
 	private String streetAddress;
+	@NotBlank(message="Enter State")
 	private String state;
+	@NotBlank(message="Enter Country")
 	private String country;
+	@NotBlank(message="Enter City")
 	private String city;
+	@NotBlank(message="Enter Zipcode")
 	private String zipCode;
+	@NotBlank(message="Enter Amenities")
 	private List<String> amenities;
+	@NotBlank(message="Enter EventType")
 	private List<String> eventType;
 	
 	public List<String> getAmenities() {

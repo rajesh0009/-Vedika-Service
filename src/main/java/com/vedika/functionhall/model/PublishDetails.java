@@ -1,10 +1,13 @@
 package com.vedika.functionhall.model;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "functionhall_reference_data")
 
 public class PublishDetails {
+	@NotNull(message="Enter OwnerId")
 	private String ownerId;
 	private String corelationId;
 	private Location location;

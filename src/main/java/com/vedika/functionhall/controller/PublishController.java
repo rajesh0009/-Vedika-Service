@@ -1,5 +1,7 @@
 package com.vedika.functionhall.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class PublishController {
 	private PublishService publishService;
 
 	@PostMapping(value = "/publishListing")
-	public ResponseEntity<GenericResponse<Response>> saveOrUpdatePublishDetails(
+	public ResponseEntity<GenericResponse<Response>> saveOrUpdatePublishDetails(@Valid
 			@RequestBody PublishDetails publishDetails, Owner owner) {
 
 		publishService.saveOrUpdatepublishListing(publishDetails, owner);

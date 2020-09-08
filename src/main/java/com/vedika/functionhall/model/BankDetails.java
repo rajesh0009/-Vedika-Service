@@ -1,14 +1,23 @@
 package com.vedika.functionhall.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class BankDetails {
-	
-	private String state;
-	private String bank;
-	private String ifsc;
+	@NotBlank(message="Enter State")
+    private String state;
+	@NotBlank(message="Enter bank")
+    private String bank;
+	@NotBlank(message="Enter IFSC Code")
+	private String ifsc;	
+	@NotBlank(message="Enter BranchName")
 	private String branch;
-	private String address;
+	@NotBlank(message="Enter Address")
+    private String address;
+	@NotBlank(message="Enter ContactNumber")
 	private String contact;
+	@NotBlank(message="Enter City")
 	private String city;
+	@NotBlank(message="Enter District")
 	private String district;
 
 	

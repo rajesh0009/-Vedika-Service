@@ -1,9 +1,14 @@
 package com.vedika.functionhall.model;
 
-public class PaymentDetail {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
+public class PaymentDetail {
+     @Email
     private String email;
+ 	@NotNull(message="Enter Name")
     private String name;
+ 	@NotNull(message="Enter PhoneNumber")
     private String phone;
     private String productInfo;
     private String amount;

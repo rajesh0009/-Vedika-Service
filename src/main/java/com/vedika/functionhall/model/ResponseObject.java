@@ -1,10 +1,36 @@
 package com.vedika.functionhall.model;
 
-public class ResponseObject {
-	private String requestId;
-	private String mobileNumber;
-	private String message;
+import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+public class ResponseObject {
+	@NotNull(message = "Enter RequestId")
+	private String requestId;
+	@NotNull(message = "Enter MobileNumber")
+	private String mobileNumber;
+	@NotNull(message = "Enter Message")
+	private String message;
+	@NotNull(message = "EnterToken")
+    private String token;
+	@NotNull(message = "Enter expirationtime")
+    private Date expirationtime;
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Date getExpirationtime() {
+		return expirationtime;
+	}
+
+	public void setExpirationtime(Date expirationtime2) {
+		this.expirationtime = expirationtime2;
+	}
 
 	public String getRequestId() {
 		return requestId;

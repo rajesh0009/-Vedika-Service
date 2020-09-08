@@ -1,15 +1,25 @@
 package com.vedika.functionhall.model;
 
-public class Responsebank {
-	private String id;
+import javax.validation.constraints.NotNull;
 
+public class Responsebank {
+	@NotNull(message="Enter Id")
+	private String id;
+	@NotNull(message="Enter BankName")
 	private String bankname;
+	@NotNull(message="Enter IFSC")
 	private String ifsc;
+	@NotNull(message="Enter BranchName")
 	private String branch;
+	@NotNull(message="Enter Address")
 	private String address;
+	@NotNull(message="Enter ContactNumber")
 	private String contact;
+	@NotNull(message="Enter State Name")
 	private String state;
+	@NotNull(message="Enter City Name")
 	private String city;
+	@NotNull(message="Enter District Name")
 	private String district;
 
 	public String getId() {

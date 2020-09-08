@@ -1,12 +1,20 @@
 package com.vedika.functionhall.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class AccountDetails {
+	@NotBlank(message="enter accountNumber")
 	private String accountNumber;
+	@NotBlank(message="enter accountName")
 	private String accountName;
 	private String accountType;
+	@NotBlank(message="enter bankName")
 	private String bankName;
+	@NotBlank(message="enter branchName")
 	private String branchName;
+	@NotBlank(message="enter ifscCode")
 	private String ifscCode;
+	@NotBlank(message="enter pannumber")
 	private String panNumber;
 
 	public String getBankName() {

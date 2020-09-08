@@ -1,11 +1,17 @@
 package com.vedika.functionhall.model;
 
-public class PaymentCallback {
+import javax.validation.constraints.NotNull;
 
+public class PaymentCallback {
+	@NotNull(message="Enter  txnId")
     private String txnid;
+	@NotNull(message="Enter  mihpayId")
     private String mihpayid;
+	@NotNull(message="Enter  mode")
     private PaymentMode mode;
+	@NotNull(message="Enter status")
     private String status;
+	@NotNull(message="Enter hash")
     private String hash;
 	public String getTxnid() {
 		return txnid;

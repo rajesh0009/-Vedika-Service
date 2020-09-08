@@ -37,11 +37,14 @@ compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongo
 
 compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
 
+	
 		
 	
 	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
 compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.2.1'
 	  
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 
 
 	compileOnly 'org.projectlombok:lombok'
